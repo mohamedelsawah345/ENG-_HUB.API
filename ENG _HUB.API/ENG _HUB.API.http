@@ -1,0 +1,6 @@
+@ENG__HUB.API_HostAddress = http://localhost:5102
+
+GET {{ENG__HUB.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
