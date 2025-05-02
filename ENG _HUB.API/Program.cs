@@ -1,3 +1,6 @@
+using ENG__HUB.API.Services.Implementation;
+using ENG__HUB.API.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Add Generic Service to DI
+builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericService<>));
+
 
 var app = builder.Build();
 
