@@ -1,9 +1,4 @@
-﻿using ENG__HUB.API.Models;
-using ENG__HUB.API.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-
-namespace ENG__HUB.API.Controllers
+﻿namespace ENG__HUB.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
