@@ -1,4 +1,6 @@
-﻿namespace ENG__HUB.API.Models
+﻿using ENG__HUB.API.Entities;
+
+namespace ENG__HUB.API.Models
 {
     public class PromptHistory
     {
@@ -6,7 +8,7 @@
         public string PromptText { get; set; }
 
         public int UserID { get; set; }
-        public User User { get; set; }
+        //public ApplicationUser? User { get; set; }
     }
 
 }

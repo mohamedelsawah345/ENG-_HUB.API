@@ -1,14 +1,16 @@
-﻿namespace ENG__HUB.API.Models
+﻿using ENG__HUB.API.Entities;
+
+namespace ENG__HUB.API.Models
 {
     public class ToDoList
     {
-        public int ToDoListID { get; set; }
-        public string ToDoText { get; set; }
+        public int ID { get; set; }
+        public string Text { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime? DeadLineDate { get; set; }
 
-        public int UserID { get; set; }
-        public User User { get; set; }
+        //public int UserID { get; set; }
+        //public ApplicationUser? User { get; set; }
     }
 
 }

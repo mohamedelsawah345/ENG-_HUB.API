@@ -1,12 +1,14 @@
-﻿namespace ENG__HUB.API.Models
+﻿using ENG__HUB.API.Entities;
+
+namespace ENG__HUB.API.Models
 {
     public class Department
     {
-        public int DepartmentID { get; set; }
-        public string DepartmentName { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
 
-        public ICollection<User> Users { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        //public ICollection<ApplicationUser>? Users { get; set; }
+        //public ICollection<ApplicationUser>? Courses { get; set; }
     }
 
 }
