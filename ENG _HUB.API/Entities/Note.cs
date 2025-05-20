@@ -7,8 +7,8 @@ namespace ENG__HUB.API.Models
         public int ID { get; set; }
         public string Text { get; set; }
         public DateTime CreationDate { get; set; }
-        //public int UserID { get; set; }
-        //public ApplicationUser? User { get; set; }
+        public string? UserID { get; set; } = string.Empty; // ✅ ID نوعه string
+        public ApplicationUser? User { get; set; }
     }
 
 }

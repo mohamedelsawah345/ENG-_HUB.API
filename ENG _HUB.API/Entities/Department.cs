@@ -8,7 +8,7 @@ namespace ENG__HUB.API.Models
         public string Name { get; set; }
 
         //public ICollection<ApplicationUser>? Users { get; set; }
-        //public ICollection<ApplicationUser>? Courses { get; set; }
+        public ICollection<Course>? Courses { get; set; }
     }
 
 }

@@ -8,11 +8,12 @@ namespace ENG__HUB.API.Entities
         public string LastName { get; set; } = string.Empty;
 
         public string? Major { get; set; }
-        //public int? DepartmentID { get; set; }
-        //public Department? Department { get; set; }
-        //public ICollection<ToDoList>? ToDoLists { get; set; }
-        //public ICollection<Note>? Notes { get; set; }
+        public int? DepartmentID { get; set; }
+        public Department? Department { get; set; }
+        public ICollection<ToDoList>? ToDoLists { get; set; } = new List<ToDoList>();
+        public ICollection<Note>? Notes { get; set; } = new List<Note>();
 
-        //public ICollection<Course>? Courses { get; set; } // many-to-many
+        
+        public ICollection<ApplicationUserCourse> UserCourses { get; set; } = new List<ApplicationUserCourse>();
     }
 }

@@ -9,8 +9,8 @@ namespace ENG__HUB.API.Models
         public DateTime CreationDate { get; set; }
         public DateTime? DeadLineDate { get; set; }
 
-        //public int UserID { get; set; }
-        //public ApplicationUser? User { get; set; }
+        public string? UserID { get; set; } = string.Empty; // ✅ ID نوعه string
+        public ApplicationUser? User { get; set; }
     }
 
 }
