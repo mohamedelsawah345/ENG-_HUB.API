@@ -1,4 +1,6 @@
-﻿namespace ENG__HUB.API.Controllers
+﻿using ENG__HUB.API.Contract.Courses;
+
+namespace ENG__HUB.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -5,8 +5,6 @@ global using FluentValidation.AspNetCore;
 
 global using Microsoft.EntityFrameworkCore.Infrastructure;
 global using Microsoft.EntityFrameworkCore.Migrations;
-global using ENG__HUB.API.Contract.Requests;
-global using ENG__HUB.API.Contract.Responses;
 global using ENG__HUB.API.Presistance;
 global using ENG__HUB.API.Services.Implementation;
 global using ENG__HUB.API;

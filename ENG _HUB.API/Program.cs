@@ -1,5 +1,9 @@
 
+using ENG__HUB.API.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddIdentityApiEndpoints<ApplicationUser>().AddEntityFrameworkStores<ApplicationDBContext>();
 
 builder.Services.AddDepnendacies(builder.Configuration);
 
@@ -16,6 +20,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+app.MapIdentityApi<ApplicationUser>();
 app.MapControllers();
 
 app.Run();

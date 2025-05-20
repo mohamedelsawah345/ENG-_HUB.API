@@ -1,4 +1,4 @@
-﻿namespace ENG__HUB.API.Contract.Validation
+﻿namespace ENG__HUB.API.Contract.Courses
 {
     public class CourseRequestValidator : AbstractValidator<CourseRequest>
     {

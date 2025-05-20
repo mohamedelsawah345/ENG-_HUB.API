@@ -1,4 +1,6 @@
-﻿namespace ENG__HUB.API.Models
+﻿using ENG__HUB.API.Entities;
+
+namespace ENG__HUB.API.Models
 {
     public class Course
     {
@@ -6,8 +8,14 @@
         public string Name { get; set; }
         public bool IsAvilable { get; set; }
 
-        //public ICollection<User> Users { get; set; } // many-to-many
-        //public ICollection<Department> Departments { get; set; } // many-to-many
+        public int? DepartmentID { get; set; } // foreign key
+        public Department? Department { get; set; } // one-to-many
+
+        
+
+
+        public ICollection<ApplicationUserCourse> UserCourses { get; set; } = new List<ApplicationUserCourse>();
+
     }
 
 }

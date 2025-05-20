@@ -4,6 +4,7 @@ using ENG__HUB.API.Presistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ENG__HUB.API.Presistence.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250515085953_AddDepartmentTable")]
+    partial class AddDepartmentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +36,6 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("DepartmentID")
-                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -92,8 +92,6 @@ namespace ENG__HUB.API.Presistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DepartmentID");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -105,24 +103,6 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("ENG__HUB.API.Entities.ApplicationUserCourse", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EnrolledAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserId", "CourseId");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("ApplicationUserCourses");
-                });
-
             modelBuilder.Entity("ENG__HUB.API.Models.Course", b =>
                 {
                     b.Property<int>("ID")
@@ -130,9 +110,6 @@ namespace ENG__HUB.API.Presistence.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int?>("DepartmentID")
-                        .HasColumnType("int");
 
                     b.Property<bool>("IsAvilable")
                         .HasColumnType("bit");
@@ -142,8 +119,6 @@ namespace ENG__HUB.API.Presistence.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("DepartmentID");
 
                     b.HasIndex("Name")
                         .IsUnique();
@@ -169,59 +144,6 @@ namespace ENG__HUB.API.Presistence.Migrations
                         .IsUnique();
 
                     b.ToTable("Departments");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.Note", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Notes");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.ToDoList", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeadLineDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("ToDoLists");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -357,67 +279,12 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ENG__HUB.API.Entities.ApplicationUser", b =>
-                {
-                    b.HasOne("ENG__HUB.API.Models.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentID");
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Entities.ApplicationUserCourse", b =>
-                {
-                    b.HasOne("ENG__HUB.API.Models.Course", "Course")
-                        .WithMany("UserCourses")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ENG__HUB.API.Entities.ApplicationUser", "User")
-                        .WithMany("UserCourses")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.Course", b =>
-                {
-                    b.HasOne("ENG__HUB.API.Models.Department", "Department")
-                        .WithMany("Courses")
-                        .HasForeignKey("DepartmentID");
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.Note", b =>
-                {
-                    b.HasOne("ENG__HUB.API.Entities.ApplicationUser", "User")
-                        .WithMany("Notes")
-                        .HasForeignKey("UserID");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.ToDoList", b =>
-                {
-                    b.HasOne("ENG__HUB.API.Entities.ApplicationUser", "User")
-                        .WithMany("ToDoLists")
-                        .HasForeignKey("UserID");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -426,7 +293,7 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.HasOne("ENG__HUB.API.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -435,7 +302,7 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.HasOne("ENG__HUB.API.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -444,13 +311,13 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ENG__HUB.API.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -459,27 +326,8 @@ namespace ENG__HUB.API.Presistence.Migrations
                     b.HasOne("ENG__HUB.API.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Entities.ApplicationUser", b =>
-                {
-                    b.Navigation("Notes");
-
-                    b.Navigation("ToDoLists");
-
-                    b.Navigation("UserCourses");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.Course", b =>
-                {
-                    b.Navigation("UserCourses");
-                });
-
-            modelBuilder.Entity("ENG__HUB.API.Models.Department", b =>
-                {
-                    b.Navigation("Courses");
                 });
 #pragma warning restore 612, 618
         }
